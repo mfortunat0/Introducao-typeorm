@@ -11,7 +11,7 @@ const show = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-  const user = await getRepository(User).create(req.body);
+  const user = getRepository(User).create(req.body);
   const result = await getRepository(User).save(user);
   return res.json(result);
 };

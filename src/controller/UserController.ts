@@ -17,9 +17,11 @@ const create = async (req: Request, res: Response) => {
 };
 
 const update = async (req: Request, res: Response) => {
-  const user = await getRepository(User).findOne(req.params.id);
-  getRepository(User).merge(user, req.body);
-};
+ const user = await getRepository(User).findOne(req.params.id);
+ getRepository(User).merge(user, req.body);
+ const results = await getRepository(User).save(user);
+ return res.send(results);
+}
 
 const destroy = async (req: Request, res: Response) => {
   return res.json(await getRepository(User).delete(req.params.id));
